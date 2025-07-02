@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>掼蛋记分 - 历史记录</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body { background-color: #f6f6f6; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+        .mockup-container { width: 400px; height: 850px; }
+        .mockup { width: 375px; height: 812px; background: #111; border-radius: 40px; padding: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); position: relative; }
+        .screen-container { width: 100%; height: 100%; background: white; border-radius: 28px; overflow: hidden; position: relative; display: flex; flex-direction: column; }
+        .inner-screen { flex-grow: 1; overflow-y: auto; scrollbar-width: none; -ms-overflow-style: none; background-color: #f7fafc; }
+        .inner-screen::-webkit-scrollbar { display: none; }
+        .status-bar { height: 44px; display: flex; justify-content: space-between; align-items: center; padding: 0 24px; position: absolute; top: 0; left: 0; right: 0; z-index: 20; color: #1f2937; }
+        .nav-bar { height: 56px; display: flex; align-items: center; justify-content: center; position: relative; border-bottom: 1px solid #e5e7eb; background: white; }
+        .tab-bar { height: 84px; background-color: white; border-top: 1px solid #e5e7eb; display: flex; justify-content: space-around; align-items: flex-start; padding-top: 10px; }
+        .avatar-stack > div { margin-left: -12px; }
+        .avatar-stack > div:first-child { margin-left: 0; }
+    </style>
+</head>
+<body>
+    <div class="mockup-container">
+        <div class="mockup">
+            <div class="screen-container">
+                <div class="status-bar" style="background: white; position: relative;">
+                    <span class="font-semibold">10:30</span>
+                    <div class="flex items-center space-x-1"> <i class="fas fa-signal"></i> <i class="fas fa-wifi"></i> <i class="fas fa-battery-full"></i> </div>
+                </div>
+                <!-- Nav Bar -->
+                <div class="nav-bar">
+                    <h1 class="text-lg font-semibold text-gray-800">历史记录</h1>
+                </div>
+
+                <div class="inner-screen p-4 space-y-4">
+                    <!-- History Card 1 -->
+                    <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="font-semibold text-gray-700">房主: Shane</p>
+                                <p class="text-sm text-gray-500">2024-05-20 19:30</p>
+                            </div>
+                            <div class="px-3 py-1 text-sm rounded-full bg-gray-200 text-gray-600">已结束</div>
+                        </div>
+                        <div class="flex items-center justify-between mt-4">
+                            <div class="flex avatar-stack">
+                                <div class="w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-white"><img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="w-full h-full object-cover"></div>
+                                <div class="w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-white"><img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="w-full h-full object-cover"></div>
+                                <div class="w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-white"><img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="w-full h-full object-cover"></div>
+                                <div class="w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-white"><img src="https://images.pexels.com/photos/1040881/pexels-photo-1040881.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="w-full h-full object-cover"></div>
+                            </div>
+                            <i class="fas fa-chevron-right text-gray-400"></i>
+                        </div>
+                    </div>
+                    <!-- History Card 2 -->
+                    <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="font-semibold text-gray-700">房主: Lisa</p>
+                                <p class="text-sm text-gray-500">2024-05-19 21:00</p>
+                            </div>
+                            <div class="px-3 py-1 text-sm rounded-full bg-green-100 text-green-700">进行中</div>
+                        </div>
+                        <div class="flex items-center justify-between mt-4">
+                            <div class="flex avatar-stack">
+                                <div class="w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-white"><img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="w-full h-full object-cover"></div>
+                                <div class="w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-white"><img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="w-full h-full object-cover"></div>
+                                <div class="w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-white"><img src="https://images.pexels.com/photos/1040881/pexels-photo-1040881.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="w-full h-full object-cover"></div>
+                            </div>
+                             <i class="fas fa-chevron-right text-gray-400"></i>
+                        </div>
+                    </div>
+                     <!-- Add more cards for scrolling demo -->
+                </div>
+
+                <!-- Tab Bar -->
+                <div class="tab-bar">
+                    <div class="text-center text-gray-400 hover:text-blue-500">
+                        <i class="fas fa-home text-2xl"></i>
+                        <p class="text-xs font-semibold mt-1">首页</p>
+                    </div>
+                    <div class="text-center text-blue-500">
+                        <i class="fas fa-chart-bar text-2xl"></i>
+                        <p class="text-xs font-semibold mt-1">历史记录</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

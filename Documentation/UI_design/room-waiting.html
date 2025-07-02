@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>掼蛋记分 - 等待加入</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            background-color: #f6f6f6; display: flex; justify-content: center; align-items: center;
+            min-height: 100vh; margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        .mockup-container { width: 400px; height: 850px; }
+        .mockup {
+            width: 375px; height: 812px; background: #111; border-radius: 40px;
+            padding: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); position: relative;
+        }
+        .screen-container {
+            width: 100%; height: 100%; background: white; border-radius: 28px;
+            overflow: hidden; position: relative; display: flex; flex-direction: column;
+        }
+        .inner-screen {
+            flex-grow: 1; overflow-y: auto; scrollbar-width: none; -ms-overflow-style: none;
+            background-color: #f7fafc;
+        }
+        .inner-screen::-webkit-scrollbar { display: none; }
+        .status-bar {
+            height: 44px; display: flex; justify-content: space-between; align-items: center;
+            padding: 0 24px; position: absolute; top: 0; left: 0; right: 0;
+            z-index: 20; color: #1f2937;
+        }
+        .nav-bar {
+            height: 56px; display: flex; align-items: center; justify-content: center;
+            position: relative; border-bottom: 1px solid #e5e7eb; background: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="mockup-container">
+        <div class="mockup">
+            <div class="screen-container">
+                <div class="status-bar" style="background: white; position: relative;">
+                    <span class="font-semibold">9:45</span>
+                    <div class="flex items-center space-x-1"> <i class="fas fa-signal"></i> <i class="fas fa-wifi"></i> <i class="fas fa-battery-full"></i> </div>
+                </div>
+                <!-- Nav Bar -->
+                <div class="nav-bar">
+                    <h1 class="text-lg font-semibold text-gray-800">房间号: 123456</h1>
+                    <div class="absolute right-4">
+                        <i class="fas fa-sign-out-alt text-xl text-gray-500 cursor-pointer" title="退出房间"></i>
+                    </div>
+                </div>
+
+                <div class="inner-screen p-6">
+                    <h2 class="text-center text-gray-500 mb-6">玩家已到齐，房主可开始游戏</h2>
+                    <!-- Players Grid -->
+                    <div class="grid grid-cols-2 gap-6">
+                        <!-- Player 1 (Host) -->
+                        <div class="relative bg-white p-4 rounded-2xl shadow-md flex flex-col items-center justify-center aspect-square">
+                            <div class="absolute top-2 right-2 bg-yellow-400 text-white p-1 rounded-full">
+                                <i class="fas fa-crown text-xs" title="房主"></i>
+                            </div>
+                            <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="w-20 h-20 rounded-full border-4 border-cyan-400">
+                            <p class="mt-3 font-semibold text-gray-800">Shane</p>
+                        </div>
+                        <!-- Player 2 -->
+                        <div class="bg-white p-4 rounded-2xl shadow-md flex flex-col items-center justify-center aspect-square">
+                            <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="w-20 h-20 rounded-full border-4 border-gray-200">
+                            <p class="mt-3 font-semibold text-gray-800">Lisa</p>
+                        </div>
+                        <!-- Player 3 -->
+                        <div class="bg-white p-4 rounded-2xl shadow-md flex flex-col items-center justify-center aspect-square">
+                            <img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="w-20 h-20 rounded-full border-4 border-gray-200">
+                            <p class="mt-3 font-semibold text-gray-800">David</p>
+                        </div>
+                        <!-- Player 4 (Empty Slot Example) -->
+                        <div class="bg-white p-4 rounded-2xl shadow-md flex flex-col items-center justify-center aspect-square border-2 border-dashed border-gray-300">
+                           <img src="https://images.pexels.com/photos/1040881/pexels-photo-1040881.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="w-20 h-20 rounded-full border-4 border-gray-200">
+                           <p class="mt-3 font-semibold text-gray-800">Tom</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Actions -->
+                <div class="p-4 bg-white border-t border-gray-200 space-y-3">
+                    <button id="inviteBtn" class="w-full bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 px-4 rounded-xl shadow-md transition-transform transform hover:scale-105">
+                        <i class="fas fa-user-plus mr-2"></i>邀请好友
+                    </button>
+                    <button class="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition-transform transform hover:scale-105">
+                        开始游戏
+                    </button>
+                </div>
+
+                <!-- Invite Friend Modal (Popup) -->
+                <!-- To display this popup, remove the 'hidden' class -->
+                <div id="inviteModal" class="hidden absolute inset-0 bg-black bg-opacity-60 flex justify-center items-center z-50">
+                    <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-sm w-full text-center relative mx-4">
+                        <button id="closeModalBtn" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+                            <i class="fas fa-times text-2xl"></i>
+                        </button>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-4">邀请好友加入</h2>
+                        <p class="text-gray-500 mb-6">请好友微信扫描下方二维码加入房间</p>
+                        <div class="flex justify-center">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=example_room_123456" alt="QR Code">
+                        </div>
+                        <p class="text-sm text-red-500 mt-4">二维码10分钟内有效</p>
+                        <button class="mt-6 w-full bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-3 px-4 rounded-xl transition-colors">
+                            <i class="fas fa-sync-alt mr-2"></i>刷新二维码
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Simple script to toggle modal for demonstration
+        const inviteBtn = document.getElementById('inviteBtn');
+        const inviteModal = document.getElementById('inviteModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+
+        inviteBtn.addEventListener('click', () => {
+            inviteModal.classList.remove('hidden');
+        });
+        closeModalBtn.addEventListener('click', () => {
+            inviteModal.classList.add('hidden');
+        });
+        // Close modal if clicking on the background
+        inviteModal.addEventListener('click', (e) => {
+            if (e.target === inviteModal) {
+                inviteModal.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html> 

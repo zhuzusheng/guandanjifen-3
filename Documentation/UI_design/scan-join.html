@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>掼蛋记分 - 扫码加入</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            background-color: #f6f6f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        .mockup-container { width: 400px; height: 850px; }
+        .mockup {
+            width: 375px; height: 812px; background: #111; border-radius: 40px;
+            padding: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); position: relative;
+        }
+        .screen-container {
+            width: 100%; height: 100%; background: #000; border-radius: 28px;
+            overflow: hidden; position: relative; display: flex; flex-direction: column;
+        }
+        .inner-screen {
+            flex-grow: 1; overflow-y: auto; scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .inner-screen::-webkit-scrollbar { display: none; }
+        .status-bar {
+            height: 44px; display: flex; justify-content: space-between; align-items: center;
+            padding: 0 24px; position: absolute; top: 0; left: 0; right: 0;
+            z-index: 20; color: #fff;
+        }
+        .nav-bar {
+            height: 56px; display: flex; align-items: center; justify-content: center;
+            position: relative; background: rgba(0,0,0,0.3); backdrop-filter: blur(10px);
+            color: white;
+        }
+        .scanner-box {
+            position: absolute;
+            width: 240px;
+            height: 240px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        .scanner-box::before, .scanner-box::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+        }
+        .scanner-box::before {
+            top: -2px; left: -2px; border-top: 4px solid #0ea5e9; border-left: 4px solid #0ea5e9;
+        }
+        .scanner-box::after {
+            top: -2px; right: -2px; border-top: 4px solid #0ea5e9; border-right: 4px solid #0ea5e9;
+        }
+        .scanner-box .corner-bottom-left, .scanner-box .corner-bottom-right {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+        }
+        .corner-bottom-left {
+            bottom: -2px; left: -2px; border-bottom: 4px solid #0ea5e9; border-left: 4px solid #0ea5e9;
+        }
+        .corner-bottom-right {
+            bottom: -2px; right: -2px; border-bottom: 4px solid #0ea5e9; border-right: 4px solid #0ea5e9;
+        }
+        .scan-line {
+            position: absolute;
+            top: 0;
+            left: 5px;
+            right: 5px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #0ea5e9, transparent);
+            animation: scan-animation 2.5s infinite linear;
+        }
+        @keyframes scan-animation {
+            0% { top: 0; }
+            100% { top: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="mockup-container">
+        <div class="mockup">
+            <div class="screen-container">
+                <div class="status-bar">
+                    <span class="font-semibold">9:43</span>
+                    <div class="flex items-center space-x-1">
+                        <i class="fas fa-signal"></i>
+                        <i class="fas fa-wifi"></i>
+                        <i class="fas fa-battery-full"></i>
+                    </div>
+                </div>
+                <!-- Nav Bar -->
+                <div class="nav-bar" style="position: relative;">
+                    <div class="absolute left-4">
+                        <i class="fas fa-chevron-left text-xl cursor-pointer"></i>
+                    </div>
+                    <h1 class="text-lg font-semibold">扫码加入房间</h1>
+                </div>
+
+                <div class="inner-screen relative bg-gray-800">
+                    <!-- Camera View Simulation -->
+                    <div class="absolute inset-0 bg-black opacity-40"></div>
+                    
+                    <div class="relative w-full h-full flex flex-col items-center justify-center">
+                        <div class="scanner-box">
+                            <div class="corner-bottom-left"></div>
+                            <div class="corner-bottom-right"></div>
+                            <div class="scan-line"></div>
+                        </div>
+
+                        <p class="text-white text-center mt-64 z-10">将二维码放入框内，即可自动扫描</p>
+                        
+                        <div class="absolute bottom-10 z-10">
+                            <button class="text-cyan-400 hover:text-cyan-300">
+                                从相册选择二维码
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

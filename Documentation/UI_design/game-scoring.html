@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>掼蛋记分 - 游戏中</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body { background-color: #f6f6f6; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+        .mockup-container { width: 400px; height: 850px; }
+        .mockup { width: 375px; height: 812px; background: #111; border-radius: 40px; padding: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); position: relative; }
+        .screen-container { width: 100%; height: 100%; background: white; border-radius: 28px; overflow: hidden; position: relative; display: flex; flex-direction: column; }
+        .inner-screen { flex-grow: 1; overflow-y: auto; scrollbar-width: none; -ms-overflow-style: none; background-color: #f7fafc; }
+        .inner-screen::-webkit-scrollbar { display: none; }
+        .status-bar { height: 44px; display: flex; justify-content: space-between; align-items: center; padding: 0 24px; position: absolute; top: 0; left: 0; right: 0; z-index: 20; color: #1f2937; }
+        .nav-bar { height: 56px; display: flex; align-items: center; justify-content: center; position: relative; border-bottom: 1px solid #e5e7eb; background: white; }
+    </style>
+</head>
+<body>
+    <div class="mockup-container">
+        <div class="mockup">
+            <div class="screen-container">
+                <div class="status-bar" style="background: white; position: relative;">
+                    <span class="font-semibold">9:50</span>
+                    <div class="flex items-center space-x-1"> <i class="fas fa-signal"></i> <i class="fas fa-wifi"></i> <i class="fas fa-battery-full"></i> </div>
+                </div>
+                <!-- Nav Bar -->
+                <div class="nav-bar">
+                    <h1 class="text-lg font-semibold text-gray-800">游戏中 (房间: 123456)</h1>
+                    <div class="absolute right-4">
+                        <button id="exitBtn" class="text-red-500 hover:text-red-700 font-semibold">解散</button>
+                    </div>
+                </div>
+
+                <div class="inner-screen p-4">
+                    <!-- Scoreboard Grid -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <!-- Player 1 -->
+                        <div class="player-card bg-white p-3 rounded-2xl shadow-md text-center cursor-pointer" data-player-name="Shane">
+                            <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="w-16 h-16 rounded-full mx-auto border-4 border-cyan-400">
+                            <p class="mt-2 font-semibold text-gray-800">Shane</p>
+                            <p class="text-4xl font-bold text-green-500 mt-1">20</p>
+                        </div>
+                        <!-- Player 2 -->
+                        <div class="player-card bg-white p-3 rounded-2xl shadow-md text-center cursor-pointer" data-player-name="Lisa">
+                            <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="w-16 h-16 rounded-full mx-auto border-4 border-gray-200">
+                            <p class="mt-2 font-semibold text-gray-800">Lisa</p>
+                            <p class="text-4xl font-bold text-red-500 mt-1">-10</p>
+                        </div>
+                        <!-- Player 3 -->
+                        <div class="player-card bg-white p-3 rounded-2xl shadow-md text-center cursor-pointer" data-player-name="David">
+                            <img src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="w-16 h-16 rounded-full mx-auto border-4 border-gray-200">
+                            <p class="mt-2 font-semibold text-gray-800">David</p>
+                            <p class="text-4xl font-bold text-gray-700 mt-1">0</p>
+                        </div>
+                        <!-- Player 4 -->
+                        <div class="player-card bg-white p-3 rounded-2xl shadow-md text-center cursor-pointer" data-player-name="Tom">
+                           <img src="https://images.pexels.com/photos/1040881/pexels-photo-1040881.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="w-16 h-16 rounded-full mx-auto border-4 border-gray-200">
+                           <p class="mt-2 font-semibold text-gray-800">Tom</p>
+                           <p class="text-4xl font-bold text-red-500 mt-1">-10</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Scoring Modal -->
+                <div id="scoringModal" class="hidden absolute inset-0 bg-black bg-opacity-60 flex justify-center items-center z-50 p-4">
+                    <div class="bg-white rounded-2xl shadow-2xl p-6 max-w-sm w-full relative">
+                        <h2 class="text-xl font-bold text-center text-gray-800 mb-4">记分操作</h2>
+                        <p class="text-center text-gray-600 mb-4">赢家: <span id="winnerName" class="font-bold text-green-500"></span></p>
+                        
+                        <div class="mb-4">
+                            <label class="font-semibold text-gray-700">请选择输家:</label>
+                            <div id="loserList" class="mt-2 space-y-2"></div>
+                        </div>
+
+                        <div class="mb-6">
+                            <label class="font-semibold text-gray-700">请选择分值:</label>
+                            <div class="flex justify-around mt-2">
+                                <button class="score-btn bg-gray-200 hover:bg-cyan-500 hover:text-white font-bold py-2 px-6 rounded-full">10</button>
+                                <button class="score-btn bg-gray-200 hover:bg-cyan-500 hover:text-white font-bold py-2 px-6 rounded-full">20</button>
+                                <button class="score-btn bg-gray-200 hover:bg-cyan-500 hover:text-white font-bold py-2 px-6 rounded-full">30</button>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-3">
+                            <button id="cancelScoringBtn" class="w-full bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-3 rounded-xl">取消</button>
+                            <button class="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-3 rounded-xl">确认记分</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Confirmation Modal -->
+                <div id="confirmModal" class="hidden absolute inset-0 bg-black bg-opacity-60 flex justify-center items-center z-50 p-4">
+                    <div class="bg-white rounded-2xl shadow-2xl p-6 max-w-sm w-full text-center">
+                        <h2 class="text-xl font-bold text-gray-800 mb-4">确认操作</h2>
+                        <p id="confirmMessage" class="text-gray-600 mb-6">您确定要解散本房间吗?</p>
+                        <div class="flex gap-3">
+                            <button id="cancelConfirmBtn" class="w-full bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-3 rounded-xl">取消</button>
+                            <button class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-3 rounded-xl">确认解散</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const players = [
+            { name: 'Shane', avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500' },
+            { name: 'Lisa', avatar: 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500' },
+            { name: 'David', avatar: 'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500' },
+            { name: 'Tom', avatar: 'https://images.pexels.com/photos/1040881/pexels-photo-1040881.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500' }
+        ];
+
+        // Scoring Modal Logic
+        const scoringModal = document.getElementById('scoringModal');
+        const winnerNameEl = document.getElementById('winnerName');
+        const loserListEl = document.getElementById('loserList');
+        const cancelScoringBtn = document.getElementById('cancelScoringBtn');
+
+        document.querySelectorAll('.player-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const winnerName = card.dataset.playerName;
+                winnerNameEl.textContent = winnerName;
+                
+                loserListEl.innerHTML = '';
+                players.filter(p => p.name !== winnerName).forEach(loser => {
+                    loserListEl.innerHTML += `
+                        <label class="flex items-center bg-gray-100 p-3 rounded-lg hover:bg-gray-200 cursor-pointer">
+                            <input type="radio" name="loser" value="${loser.name}" class="form-radio h-5 w-5 text-cyan-600">
+                            <img src="${loser.avatar}" class="w-8 h-8 rounded-full ml-3 mr-2">
+                            <span class="ml-2 text-gray-700">${loser.name}</span>
+                        </label>`;
+                });
+                scoringModal.classList.remove('hidden');
+            });
+        });
+        cancelScoringBtn.addEventListener('click', () => scoringModal.classList.add('hidden'));
+
+        // Confirmation Modal Logic
+        const confirmModal = document.getElementById('confirmModal');
+        const exitBtn = document.getElementById('exitBtn');
+        const cancelConfirmBtn = document.getElementById('cancelConfirmBtn');
+
+        exitBtn.addEventListener('click', () => confirmModal.classList.remove('hidden'));
+        cancelConfirmBtn.addEventListener('click', () => confirmModal.classList.add('hidden'));
+        
+        // Modal background close
+        [scoringModal, confirmModal].forEach(modal => {
+             modal.addEventListener('click', (e) => {
+                if (e.target === modal) modal.classList.add('hidden');
+            });
+        });
+        
+        // Score button selection
+        document.querySelectorAll('.score-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.score-btn').forEach(btn => btn.classList.remove('bg-cyan-500', 'text-white'));
+                button.classList.add('bg-cyan-500', 'text-white');
+            });
+        });
+    </script>
+</body>
+</html> 

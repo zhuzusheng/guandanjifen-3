@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>掼蛋记分 - 首页</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            background-color: #f6f6f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        .mockup-container {
+            width: 400px;
+            height: 850px;
+        }
+        .mockup {
+            width: 375px;
+            height: 812px;
+            background: #111;
+            border-radius: 40px;
+            padding: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        .screen-container {
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        .inner-screen {
+            flex-grow: 1;
+            overflow-y: auto;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+            background-color: #f7fafc;
+        }
+        .inner-screen::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, and Opera */
+        }
+        .status-bar {
+            height: 44px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 20;
+            color: #1f2937;
+        }
+        .tab-bar {
+            height: 84px;
+            background-color: white;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="mockup-container">
+        <div class="mockup">
+            <div class="screen-container">
+                <div class="status-bar">
+                    <span class="font-semibold">9:41</span>
+                    <div class="flex items-center space-x-1">
+                        <i class="fas fa-signal"></i>
+                        <i class="fas fa-wifi"></i>
+                        <i class="fas fa-battery-full"></i>
+                    </div>
+                </div>
+                <div class="inner-screen">
+                    <div class="p-6 pt-16">
+                        <!-- User Info -->
+                        <div class="flex items-center mb-8">
+                            <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="User Avatar" class="h-16 w-16 rounded-full border-4 border-white shadow-md">
+                            <div class="ml-4">
+                                <h1 class="text-2xl font-bold text-gray-800">欢迎, Shane</h1>
+                                <p class="text-gray-500">今天也是掼蛋的好日子！</p>
+                            </div>
+                        </div>
+
+                        <!-- Main Actions -->
+                        <div class="space-y-6">
+                            <!-- Create Room -->
+                            <div class="bg-gradient-to-br from-cyan-400 to-blue-500 text-white p-6 rounded-2xl shadow-lg flex items-center justify-between hover:scale-105 transform transition-transform duration-300 cursor-pointer">
+                                <div>
+                                    <h2 class="text-2xl font-bold">创建房间</h2>
+                                    <p class="opacity-80">邀请好友，即刻开局</p>
+                                </div>
+                                <i class="fas fa-plus-circle text-4xl opacity-70"></i>
+                            </div>
+                            <!-- Scan to Join -->
+                            <div class="bg-gradient-to-br from-teal-400 to-green-500 text-white p-6 rounded-2xl shadow-lg flex items-center justify-between hover:scale-105 transform transition-transform duration-300 cursor-pointer">
+                                <div>
+                                    <h2 class="text-2xl font-bold">扫码加入</h2>
+                                    <p class="opacity-80">扫描伙伴的二维码加入</p>
+                                </div>
+                                <i class="fas fa-qrcode text-4xl opacity-70"></i>
+                            </div>
+                            <!-- History -->
+                            <div class="bg-gradient-to-br from-orange-400 to-red-500 text-white p-6 rounded-2xl shadow-lg flex items-center justify-between hover:scale-105 transform transition-transform duration-300 cursor-pointer">
+                                <div>
+                                    <h2 class="text-2xl font-bold">历史记录</h2>
+                                    <p class="opacity-80">查看往期战绩与排行</p>
+                                </div>
+                                <i class="fas fa-history text-4xl opacity-70"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tab Bar -->
+                <div class="tab-bar">
+                    <div class="text-center text-blue-500">
+                        <i class="fas fa-home text-2xl"></i>
+                        <p class="text-xs font-semibold mt-1">首页</p>
+                    </div>
+                    <div class="text-center text-gray-400 hover:text-blue-500">
+                        <i class="fas fa-chart-bar text-2xl"></i>
+                        <p class="text-xs font-semibold mt-1">历史记录</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>掼蛋记分 - 创建房间</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            background-color: #f6f6f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        .mockup-container {
+            width: 400px;
+            height: 850px;
+        }
+        .mockup {
+            width: 375px;
+            height: 812px;
+            background: #111;
+            border-radius: 40px;
+            padding: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        .screen-container {
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        .inner-screen {
+            flex-grow: 1;
+            overflow-y: auto;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+            background-color: #f7fafc;
+        }
+        .inner-screen::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, and Opera */
+        }
+        .status-bar {
+            height: 44px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 20;
+            color: #1f2937;
+        }
+        .nav-bar {
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border-bottom: 1px solid #e5e7eb;
+            background: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="mockup-container">
+        <div class="mockup">
+            <div class="screen-container">
+                <div class="status-bar" style="background: white; position: relative;">
+                    <span class="font-semibold">9:42</span>
+                    <div class="flex items-center space-x-1">
+                        <i class="fas fa-signal"></i>
+                        <i class="fas fa-wifi"></i>
+                        <i class="fas fa-battery-full"></i>
+                    </div>
+                </div>
+                <!-- Nav Bar -->
+                <div class="nav-bar">
+                    <div class="absolute left-4">
+                        <i class="fas fa-chevron-left text-xl text-gray-600 cursor-pointer"></i>
+                    </div>
+                    <h1 class="text-lg font-semibold text-gray-800">创建房间</h1>
+                </div>
+
+                <div class="inner-screen p-6 flex flex-col justify-between">
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-700">设置记分档位</h2>
+                        <p class="text-gray-500 mt-1 mb-6">该分值用于记分时的快捷选项，创建后不可修改。</p>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between bg-white p-4 rounded-xl shadow-sm">
+                                <label for="score1" class="text-lg font-medium text-gray-600">档位一</label>
+                                <input type="number" id="score1" value="10" class="w-24 text-right text-lg font-bold text-cyan-600 bg-gray-100 rounded-lg p-2 border-transparent focus:border-cyan-500 focus:ring-cyan-500">
+                            </div>
+                            <div class="flex items-center justify-between bg-white p-4 rounded-xl shadow-sm">
+                                <label for="score2" class="text-lg font-medium text-gray-600">档位二</label>
+                                <input type="number" id="score2" value="20" class="w-24 text-right text-lg font-bold text-cyan-600 bg-gray-100 rounded-lg p-2 border-transparent focus:border-cyan-500 focus:ring-cyan-500">
+                            </div>
+                            <div class="flex items-center justify-between bg-white p-4 rounded-xl shadow-sm">
+                                <label for="score3" class="text-lg font-medium text-gray-600">档位三</label>
+                                <input type="number" id="score3" value="30" class="w-24 text-right text-lg font-bold text-cyan-600 bg-gray-100 rounded-lg p-2 border-transparent focus:border-cyan-500 focus:ring-cyan-500">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="pb-4">
+                        <button class="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-4 px-4 rounded-xl shadow-lg transition-transform transform hover:scale-105">
+                            确认创建
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>掼蛋记分 - UI设计稿总览</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #f6f6f6;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        iframe {
+            border: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="p-8">
+    <div class="container mx-auto">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-800">掼蛋记分小程序 - UI 设计稿</h1>
+            <p class="text-gray-500 mt-2">所有页面设计总览</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            <!-- Login Page -->
+            <div>
+                <h2 class="text-xl font-semibold text-center mb-4">1. 授权登录页</h2>
+                <iframe src="login.html" width="400" height="850"></iframe>
+            </div>
+            <!-- Home Page -->
+            <div>
+                <h2 class="text-xl font-semibold text-center mb-4">2. 首页</h2>
+                <iframe src="home.html" width="400" height="850"></iframe>
+            </div>
+            <!-- Create Room Page -->
+            <div>
+                <h2 class="text-xl font-semibold text-center mb-4">3. 创建房间页</h2>
+                <iframe src="create-room.html" width="400" height="850"></iframe>
+            </div>
+            <!-- Scan to Join Page -->
+            <div>
+                <h2 class="text-xl font-semibold text-center mb-4">4. 扫码加入页</h2>
+                <iframe src="scan-join.html" width="400" height="850"></iframe>
+            </div>
+            <!-- Room Waiting Page -->
+            <div>
+                <h2 class="text-xl font-semibold text-center mb-2">5. 房间等待页</h2>
+                <p class="text-sm text-center text-gray-500 mb-2">（含邀请好友弹窗）</p>
+                <iframe src="room-waiting.html" width="400" height="850"></iframe>
+            </div>
+            <!-- Game Scoring Page -->
+            <div>
+                <h2 class="text-xl font-semibold text-center mb-2">6. 游戏记分页</h2>
+                <p class="text-sm text-center text-gray-500 mb-2">（含记分、确认弹窗）</p>
+                <iframe src="game-scoring.html" width="400" height="850"></iframe>
+            </div>
+            <!-- History List Page -->
+            <div>
+                <h2 class="text-xl font-semibold text-center mb-4">7. 历史记录页</h2>
+                <iframe src="history-list.html" width="400" height="850"></iframe>
+            </div>
+            <!-- Room Details Page -->
+            <div>
+                <h2 class="text-xl font-semibold text-center mb-4">8. 房间详情页</h2>
+                <iframe src="room-details.html" width="400" height="850"></iframe>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
